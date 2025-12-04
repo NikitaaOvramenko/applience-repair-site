@@ -1,11 +1,8 @@
 ## ADDED Requirements
-
 ### Requirement: Service Request Page
-
 The system SHALL provide a dedicated page for users to submit repair requests.
 
 #### Scenario: Form Fields
-
 - **WHEN** a user visits the service request page
 - **THEN** they see a form with the following fields:
   - First Name
@@ -16,22 +13,17 @@ The system SHALL provide a dedicated page for users to submit repair requests.
   - Description of Issue
 
 #### Scenario: Service Selection
-
 - **WHEN** filling out the form
 - **THEN** the user must select a service type (Washer, Fridge, Dryer, etc.) presented as selectable cards.
 
 #### Scenario: Form Submission
-
 - **WHEN** the user submits valid data
 - **THEN** a success message is displayed (mock submission).
 
 ## MODIFIED Requirements
-
 ### Requirement: Landing Page Structure
-
 The system SHALL provide a responsive landing page optimized for mobile conversion.
 
 #### Scenario: Hero CTA
-
 - **WHEN** a user visits the homepage
 - **THEN** the primary call-to-action is "Book Repair" which navigates to the Service Request page.

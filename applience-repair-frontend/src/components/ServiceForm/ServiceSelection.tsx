@@ -12,10 +12,10 @@ interface ServiceSelectionProps {
   onSelect: (serviceId: string) => void;
 }
 
-export const ServiceSelection = ({
+export default function ServiceSelection({
   selectedService,
   onSelect,
-}: ServiceSelectionProps) => {
+}: ServiceSelectionProps) {
   return (
     <div className="mb-8">
       <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -43,4 +43,4 @@ export const ServiceSelection = ({
       </div>
     </div>
   );
-};
+}

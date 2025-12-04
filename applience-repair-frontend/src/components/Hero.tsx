@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Hero = () => {
+export default function Hero() {
   const scrollToServices = () => {
     const element = document.getElementById("services");
     element?.scrollIntoView({ behavior: "smooth" });
@@ -8,7 +8,6 @@ export const Hero = () => {
 
   return (
     <section className="relative bg-gray-900 text-white py-20 px-4 overflow-hidden">
-      {/* Background Overlay/Image Placeholder */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-gray-900 opacity-90 z-0"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
@@ -41,4 +40,4 @@ export const Hero = () => {
       </div>
     </section>
   );
-};
+}

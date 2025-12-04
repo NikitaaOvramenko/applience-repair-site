@@ -9,7 +9,7 @@ const areas = [
   "Scarborough",
 ];
 
-export const ServiceAreas = () => {
+export default function ServiceAreas() {
   return (
     <section className="py-12 bg-gray-50 border-t border-gray-200">
       <div className="max-w-5xl mx-auto px-4 text-center">
@@ -27,4 +27,4 @@ export const ServiceAreas = () => {
       </div>
     </section>
   );
-};
+}

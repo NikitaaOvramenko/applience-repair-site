@@ -1,4 +1,4 @@
-export const ContactFooter = () => {
+export default function ContactFooter() {
   const phoneNumber = "+15555555555";
   const cleanPhone = "15555555555";
 
@@ -52,4 +52,4 @@ export const ContactFooter = () => {
       </div>
     </footer>
   );
-};
+}

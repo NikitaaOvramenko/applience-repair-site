@@ -5,7 +5,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -14,7 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
             to="/"
             className="font-bold text-xl tracking-tight text-primary"
           >
-            Appliance Repair
+            TCS - Appliance Repair
           </Link>
           <Link
             to="/request-service"
@@ -28,4 +28,4 @@ export const Layout = ({ children }: LayoutProps) => {
       {/* Footer will be added here later */}
     </div>
   );
-};
+}

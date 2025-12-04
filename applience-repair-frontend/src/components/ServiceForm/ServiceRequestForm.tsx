@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ServiceSelection } from "./ServiceSelection";
+import ServiceSelection from "./ServiceSelection";
 
 interface FormData {
   firstName: string;
@@ -11,7 +11,7 @@ interface FormData {
   serviceType: string;
 }
 
-export const ServiceRequestForm = () => {
+export default function ServiceRequestForm() {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -204,4 +204,4 @@ export const ServiceRequestForm = () => {
       </button>
     </form>
   );
-};
+}

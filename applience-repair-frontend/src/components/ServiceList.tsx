@@ -7,7 +7,7 @@ const services = [
   { title: "Installation", icon: "🔧" },
 ];
 
-export const ServiceList = () => {
+export default function ServiceList() {
   return (
     <section id="services" className="py-16 bg-white">
       <div className="max-w-5xl mx-auto px-4">
@@ -29,4 +29,4 @@ export const ServiceList = () => {
       </div>
     </section>
   );
-};
+}

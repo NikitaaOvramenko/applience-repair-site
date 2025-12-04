@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { ServiceRequestForm } from "../components/ServiceRequestForm";
+import ServiceRequestForm from "../components/ServiceForm/ServiceRequestForm";
 
-export const RequestServicePage = () => {
+export default function RequestServicePage() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-3xl mx-auto">
@@ -25,4 +25,4 @@ export const RequestServicePage = () => {
       </div>
     </div>
   );
-};
+}
