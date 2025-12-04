@@ -19,7 +19,7 @@ export default function Hero() {
         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
           Fast, reliable repair for Washers, Fridges, Dryers, Dishwashers, and
           Stoves.
-          <br className="hidden md:block" />
+          <br className="hidden sm:block" />
           Same-day service available.
         </p>
 

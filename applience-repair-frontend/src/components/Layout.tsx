@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/icons/tcs_icon.png";
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,9 +13,10 @@ export default function Layout({ children }: LayoutProps) {
         <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link
             to="/"
-            className="font-bold text-xl tracking-tight text-primary"
+            className="font-bold flex items-center gap-2 text-xl tracking-tight text-primary"
           >
-            TCS - Appliance Repair
+            <img src={logo} alt="TCS Logo" className="w-10 h-10 mb-2" />
+            <span className="text-xl font-bold">TCS - Appliance Repair</span>
           </Link>
           <Link
             to="/request-service"

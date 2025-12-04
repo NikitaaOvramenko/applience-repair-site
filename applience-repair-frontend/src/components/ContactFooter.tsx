@@ -43,25 +43,25 @@ export default function ContactFooter() {
           >
             <FaPhone /> Call Now
           </a>
-          <a
+          {/* <a
             href={`https://wa.me/${cleanPhone}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full md:w-auto flex-1 bg-green-600 text-center py-4 rounded-lg font-bold text-lg hover:bg-green-500 transition-colors flex items-center justify-center gap-2"
           >
             <FaWhatsapp /> WhatsApp
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href={`sms:${phoneNumber}`}
             className="w-full md:w-auto flex-1 bg-gray-700 text-center py-4 rounded-lg font-bold text-lg hover:bg-gray-600 transition-colors flex items-center justify-center gap-2"
           >
             <FaComment /> SMS
-          </a>
+          </a> */}
         </div>
 
         <div className="mt-12 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} Appliance Repair Service. Serving Toronto
-          & GTA.
+          © {new Date().getFullYear()} Technological Construction Service -
+          Appliance Repair Service. Serving Toronto & GTA.
         </div>
       </div>
     </footer>
