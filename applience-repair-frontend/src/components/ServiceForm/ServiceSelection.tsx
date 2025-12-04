@@ -1,10 +1,14 @@
+import { BiWater, BiFridge, BiWind, BiDish } from "react-icons/bi";
+import { GiGasStove } from "react-icons/gi";
+import { FaTools } from "react-icons/fa";
+
 const services = [
-  { id: "washer", title: "Washer Repair", icon: "🫧" },
-  { id: "fridge", title: "Fridge Repair", icon: "❄️" },
-  { id: "dryer", title: "Dryer Repair", icon: "🔥" },
-  { id: "dishwasher", title: "Dishwasher Repair", icon: "🍽️" },
-  { id: "stove", title: "Stove & Oven", icon: "🍳" },
-  { id: "install", title: "Installation", icon: "🔧" },
+  { id: "washer", title: "Washer Repair", icon: <BiWater /> },
+  { id: "fridge", title: "Fridge Repair", icon: <BiFridge /> },
+  { id: "dryer", title: "Dryer Repair", icon: <BiWind /> },
+  { id: "dishwasher", title: "Dishwasher Repair", icon: <BiDish /> },
+  { id: "stove", title: "Stove & Oven", icon: <GiGasStove /> },
+  { id: "install", title: "Installation", icon: <FaTools /> },
 ];
 
 interface ServiceSelectionProps {
