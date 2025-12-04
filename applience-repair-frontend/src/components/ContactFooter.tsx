@@ -4,13 +4,10 @@ import {
   FaCertificate,
   FaShieldAlt,
   FaPhone,
-  FaWhatsapp,
-  FaComment,
 } from "react-icons/fa";
 
 export default function ContactFooter() {
   const phoneNumber = "+16479169777";
-  const cleanPhone = "+16479169777";
 
   const benefits = [
     { icon: <FaClock />, text: "Service within 1–2 hours" },
