@@ -17,7 +17,7 @@ export default function RequestServicePage() {
             Request Service
           </h1>
           <p className="text-gray-600">
-            Fill out the form below and we'll get back to you within 30 minutes.
+            Fill out the form below and we'll get back to you within 24 hours.
           </p>
         </div>
 
