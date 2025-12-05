@@ -12,12 +12,12 @@ const services = [
 ];
 
 interface ServiceSelectionProps {
-  selectedService: string;
+  selectedServices: string[];
   onSelect: (serviceId: string) => void;
 }
 
 export default function ServiceSelection({
-  selectedService,
+  selectedServices,
   onSelect,
 }: ServiceSelectionProps) {
   return (
@@ -26,24 +26,27 @@ export default function ServiceSelection({
         Select Service Type *
       </label>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {services.map((service) => (
-          <button
-            key={service.id}
-            type="button"
-            onClick={() => onSelect(service.id)}
-            className={`
+        {services.map((service) => {
+          const isSelected = selectedServices.includes(service.id);
+          return (
+            <button
+              key={service.id}
+              type="button"
+              onClick={() => onSelect(service.id)}
+              className={`
               flex flex-col items-center p-4 rounded-lg border-2 transition-all
               ${
-                selectedService === service.id
+                isSelected
                   ? "border-primary bg-blue-50 text-primary"
                   : "border-gray-200 hover:border-blue-200 bg-white text-gray-600"
               }
             `}
-          >
-            <span className="text-2xl mb-2">{service.icon}</span>
-            <span className="text-sm font-medium">{service.title}</span>
-          </button>
-        ))}
+            >
+              <span className="text-2xl mb-2">{service.icon}</span>
+              <span className="text-sm font-medium">{service.title}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

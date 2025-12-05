@@ -1,25 +1,34 @@
 import { useState, type FormEvent } from "react";
 import ServiceSelection from "./ServiceSelection";
+import axios from "axios";
 
 interface FormData {
-  firstName: string;
-  lastName: string;
+  name: string;
+  lastname: string;
   email: string;
   phone: string;
-  postalCode: string;
+  street: string;
+  town: string;
+  postal_code: string;
   description: string;
-  serviceType: string;
+  selectedServices: string[];
+  workType: string;
+  country: string;
 }
 
 export default function ServiceRequestForm() {
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    name: "",
+    lastname: "",
     email: "",
     phone: "",
-    postalCode: "",
+    street: "",
+    town: "",
+    postal_code: "",
     description: "",
-    serviceType: "",
+    selectedServices: [],
+    workType: "Appliance Repair",
+    country: "CANADA",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,12 +38,23 @@ export default function ServiceRequestForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const payload = {
+      ...formData,
+      service: formData.selectedServices.join(", "),
+    };
 
-    console.log("Form Submitted:", formData);
-    setIsSuccess(true);
-    setIsSubmitting(false);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}/api/email/form`,
+        payload
+      );
+      console.log("Form Submitted:", payload);
+      console.log("Response:", response);
+      setIsSuccess(true);
+      setIsSubmitting(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const handleChange = (
@@ -42,6 +62,20 @@ export default function ServiceRequestForm() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleServiceSelect = (serviceId: string) => {
+    setFormData((prev) => {
+      const services = prev.selectedServices;
+      if (services.includes(serviceId)) {
+        return {
+          ...prev,
+          selectedServices: services.filter((id) => id !== serviceId),
+        };
+      } else {
+        return { ...prev, selectedServices: [...services, serviceId] };
+      }
+    });
   };
 
   if (isSuccess) {
@@ -52,8 +86,8 @@ export default function ServiceRequestForm() {
           Request Received!
         </h3>
         <p className="text-green-700">
-          Thank you, {formData.firstName}. We have received your request and
-          will contact you shortly at {formData.phone}.
+          Thank you, {formData.name}. We have received your request and will
+          contact you shortly at {formData.phone}.
         </p>
         <button
           onClick={() => setIsSuccess(false)}
@@ -75,16 +109,16 @@ export default function ServiceRequestForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
           <label
-            htmlFor="firstName"
+            htmlFor="name"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
             First Name
           </label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
             required
@@ -92,16 +126,16 @@ export default function ServiceRequestForm() {
         </div>
         <div>
           <label
-            htmlFor="lastName"
+            htmlFor="lastname"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
             Last Name
           </label>
           <input
             type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
+            id="lastname"
+            name="lastname"
+            value={formData.lastname}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
             required
@@ -147,18 +181,55 @@ export default function ServiceRequestForm() {
         </div>
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label
+            htmlFor="town"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Town
+          </label>
+          <input
+            type="text"
+            id="town"
+            name="town"
+            value={formData.town}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+            placeholder="City/Town"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="street"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Address
+          </label>
+          <input
+            type="text"
+            id="street"
+            name="street"
+            value={formData.street}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+            placeholder="Street Address"
+          />
+        </div>
+      </div>
+
       <div className="mb-6">
         <label
-          htmlFor="postalCode"
+          htmlFor="postal_code"
           className="block text-sm font-medium text-gray-700 mb-1"
         >
           Postal Code
         </label>
         <input
           type="text"
-          id="postalCode"
-          name="postalCode"
-          value={formData.postalCode}
+          id="postal_code"
+          name="postal_code"
+          value={formData.postal_code}
           onChange={handleChange}
           className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
           placeholder="M5V 2T6"
@@ -166,8 +237,8 @@ export default function ServiceRequestForm() {
       </div>
 
       <ServiceSelection
-        selectedService={formData.serviceType}
-        onSelect={(id) => setFormData((prev) => ({ ...prev, serviceType: id }))}
+        selectedServices={formData.selectedServices}
+        onSelect={handleServiceSelect}
       />
 
       <div className="mb-8">
@@ -190,11 +261,11 @@ export default function ServiceRequestForm() {
 
       <button
         type="submit"
-        disabled={isSubmitting || !formData.serviceType}
+        disabled={isSubmitting || formData.selectedServices.length === 0}
         className={`
           w-full py-4 rounded-lg font-bold text-lg text-white shadow-md transition-all
           ${
-            isSubmitting || !formData.serviceType
+            isSubmitting || formData.selectedServices.length === 0
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-primary hover:bg-blue-600 hover:-translate-y-1"
           }
