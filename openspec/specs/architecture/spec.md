@@ -1,21 +1,20 @@
-# architecture Specification
+### Requirement: Modular Page Structure
 
-## Purpose
-TBD - created by archiving change refactor-project-structure. Update Purpose after archive.
-## Requirements
-### Requirement: Codebase Architecture
-The system SHALL adhere to a specific file structure and coding convention.
+The codebase SHALL organize page-specific logic and components into dedicated directories within `src/pages/<page-name>/`.
 
-#### Scenario: Directory Structure
-- **WHEN** inspecting the source code
-- **THEN** the following directories MUST exist (even if empty):
-  - `src/components`
-  - `src/pages`
-  - `src/contexts`
-  - `src/hooks`
-  - `src/utils`
+#### Scenario: Developer navigation
 
-#### Scenario: Component Exports
-- **WHEN** defining a React component
-- **THEN** it MUST be exported using `export default function ComponentName() { ... }` syntax.
+- **WHEN** a developer looks for Home page components
+- **THEN** they find them in `src/pages/home/components/`
+- **AND** they are not mixed with global components
 
+### Requirement: Explicit Layout Components
+
+The application SHALL use distinct `Navbar` and `Footer` components integrated into the main Layout.
+
+#### Scenario: Layout composition
+
+- **WHEN** the application renders
+- **THEN** the `Navbar` is rendered at the top
+- **AND** the `Footer` is rendered at the bottom
+- **AND** the page content is rendered between them
