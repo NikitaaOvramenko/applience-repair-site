@@ -1,56 +1,86 @@
 import { useState, type FormEvent } from "react";
+
 import ServiceSelection from "./ServiceSelection";
+
 import axios from "axios";
 
 interface FormData {
   name: string;
+
   lastname: string;
+
   email: string;
+
   phone: string;
+
   street: string;
+
   town: string;
+
   postal_code: string;
+
   description: string;
+
   selectedServices: string[];
+
   workType: string;
+
   country: string;
 }
 
 export default function ServiceRequestForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
+
     lastname: "",
+
     email: "",
+
     phone: "",
+
     street: "",
+
     town: "",
+
     postal_code: "",
+
     description: "",
+
     selectedServices: [],
+
     workType: "Appliance Repair",
+
     country: "CANADA",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     setIsSubmitting(true);
 
     const payload = {
       ...formData,
+
       service: formData.selectedServices.join(", "),
     };
 
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/email/form`,
+
         payload
       );
+
       console.log("Form Submitted:", payload);
+
       console.log("Response:", response);
+
       setIsSuccess(true);
+
       setIsSubmitting(false);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -61,15 +91,18 @@ export default function ServiceRequestForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleServiceSelect = (serviceId: string) => {
     setFormData((prev) => {
       const services = prev.selectedServices;
+
       if (services.includes(serviceId)) {
         return {
           ...prev,
+
           selectedServices: services.filter((id) => id !== serviceId),
         };
       } else {
@@ -82,13 +115,16 @@ export default function ServiceRequestForm() {
     return (
       <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
         <div className="text-4xl mb-4">✅</div>
+
         <h3 className="text-2xl font-bold text-green-800 mb-2">
           Request Received!
         </h3>
+
         <p className="text-green-700">
           Thank you, {formData.name}. We have received your request and will
           contact you shortly at {formData.phone}.
         </p>
+
         <button
           onClick={() => setIsSuccess(false)}
           className="mt-6 text-green-700 font-semibold hover:underline"
@@ -114,6 +150,7 @@ export default function ServiceRequestForm() {
           >
             First Name
           </label>
+
           <input
             type="text"
             id="name"
@@ -124,6 +161,7 @@ export default function ServiceRequestForm() {
             required
           />
         </div>
+
         <div>
           <label
             htmlFor="lastname"
@@ -131,6 +169,7 @@ export default function ServiceRequestForm() {
           >
             Last Name
           </label>
+
           <input
             type="text"
             id="lastname"
@@ -151,6 +190,7 @@ export default function ServiceRequestForm() {
           >
             Email Address *
           </label>
+
           <input
             type="email"
             id="email"
@@ -161,6 +201,7 @@ export default function ServiceRequestForm() {
             required
           />
         </div>
+
         <div>
           <label
             htmlFor="phone"
@@ -168,6 +209,7 @@ export default function ServiceRequestForm() {
           >
             Phone Number *
           </label>
+
           <input
             type="tel"
             id="phone"
@@ -189,6 +231,7 @@ export default function ServiceRequestForm() {
           >
             Town
           </label>
+
           <input
             type="text"
             id="town"
@@ -199,6 +242,7 @@ export default function ServiceRequestForm() {
             placeholder="City/Town"
           />
         </div>
+
         <div>
           <label
             htmlFor="street"
@@ -206,6 +250,7 @@ export default function ServiceRequestForm() {
           >
             Address
           </label>
+
           <input
             type="text"
             id="street"
@@ -225,6 +270,7 @@ export default function ServiceRequestForm() {
         >
           Postal Code
         </label>
+
         <input
           type="text"
           id="postal_code"
@@ -248,6 +294,7 @@ export default function ServiceRequestForm() {
         >
           Description of Issue
         </label>
+
         <textarea
           id="description"
           name="description"
@@ -263,12 +310,15 @@ export default function ServiceRequestForm() {
         type="submit"
         disabled={isSubmitting || formData.selectedServices.length === 0}
         className={`
+
           w-full py-4 rounded-lg font-bold text-lg text-white shadow-md transition-all
+
           ${
             isSubmitting || formData.selectedServices.length === 0
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-primary hover:bg-blue-600 hover:-translate-y-1"
           }
+
         `}
       >
         {isSubmitting ? "Submitting..." : "Submit Request"}

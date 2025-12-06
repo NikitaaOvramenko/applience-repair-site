@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ServiceRequestForm from "../components/ServiceForm/ServiceRequestForm";
+import ServiceRequestForm from "./components/ServiceRequestForm";
 
 export default function RequestServicePage() {
   return (

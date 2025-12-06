@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
-import RequestServicePage from "./pages/RequestServicePage";
+import HomePage from "./pages/home/HomePage";
+import RequestServicePage from "./pages/request-service/RequestServicePage";
 
 export default function App() {
   return (
